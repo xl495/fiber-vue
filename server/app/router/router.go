@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fiber-vue/app/controller"
 	"fiber-vue/app/middleware"
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
@@ -15,13 +16,13 @@ func Initalize(router *fiber.App) {
 		Path:     "docs",
 	}))
 
-	router.Use(middleware.Security)
-
 	router.Get("/", func(c *fiber.Ctx) error {
 		return c.Status(200).SendString("Hello, World!")
 	})
 
 	router.Use(middleware.Json)
+
+	router.Post("/api/user", controller.CreateUser)
 
 	router.Use(func(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{

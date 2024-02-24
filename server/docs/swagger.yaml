@@ -1,4 +1,50 @@
 basePath: /api
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  model.User:
+    properties:
+      avatar:
+        description: Avatar URL of the user
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      email:
+        description: |-
+          Email of the user
+          format: email
+          required: false
+        type: string
+      id:
+        type: integer
+      nickname:
+        description: |-
+          Nickname of the user
+          example: JohnDoe
+          required: true
+        type: string
+      password:
+        description: |-
+          Password of the user
+          required: true
+        type: string
+      phone:
+        description: |-
+          Phone number of the user
+          format: int64
+          required: false
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact:
     email: 52553624@qq.com
@@ -9,5 +55,51 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Fiber Admin App
   version: "1.0"
-paths: {}
+paths:
+  /user:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            type: string
+        "500":
+          description: 内部错误
+          schema:
+            type: string
+    post:
+      parameters:
+      - description: 账户名
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: 密码
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: 请求错误
+          schema:
+            type: string
+        "500":
+          description: 内部错误
+          schema:
+            type: string
 swagger: "2.0"
