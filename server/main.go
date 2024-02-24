@@ -17,17 +17,17 @@ func getenv(key, fallback string) string {
 	return value
 }
 
-// @title Fiber Admin App
-// @version 1.0
-// @description This is an API for Fiber Admin Application
+//	@title			Fiber Admin App
+//	@version		1.0
+//	@description	This is an API for Fiber Admin Application
 
-// @contact.name hxl
-// @contact.email 52553624@qq.com
+//	@contact.name	hxl
+//	@contact.email	52553624@qq.com
 
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+//	@license.name	Apache 2.0
+//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @BasePath /api
+//	@BasePath	/api
 func main() {
 
 	database.ConnectDB()
