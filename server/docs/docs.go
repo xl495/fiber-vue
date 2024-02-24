@@ -22,6 +22,51 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/login": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "登录",
+                "parameters": [
+                    {
+                        "description": "用户信息",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.UserLoginReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功创建用户并返回新创建的用户信息",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误，例如缺少必填字段或格式不正确",
+                        "schema": {
+                            "$ref": "#/definitions/controller.BadRequestErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/controller.InternalServerErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/user": {
             "get": {
                 "produces": [
@@ -49,46 +94,45 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "description": "创建一个新的系统用户",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "创建用户",
                 "parameters": [
                     {
-                        "description": "账户名",
-                        "name": "username",
+                        "description": "用户信息",
+                        "name": "user",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "密码",
-                        "name": "password",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/controller.UserReq"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "成功",
+                        "description": "成功创建用户并返回新创建的用户信息",
                         "schema": {
                             "$ref": "#/definitions/model.User"
                         }
                     },
                     "400": {
-                        "description": "请求错误",
+                        "description": "请求错误，例如缺少必填字段或格式不正确",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/controller.BadRequestErrorResponse"
                         }
                     },
                     "500": {
-                        "description": "内部错误",
+                        "description": "服务器内部错误",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/controller.InternalServerErrorResponse"
                         }
                     }
                 }
@@ -96,6 +140,60 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "controller.BadRequestErrorResponse": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "description": "具体错误详情（可选）",
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "error": {
+                    "description": "错误信息",
+                    "type": "string"
+                }
+            }
+        },
+        "controller.InternalServerErrorResponse": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "description": "具体错误详情（可选）",
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "error": {
+                    "description": "错误信息",
+                    "type": "string"
+                }
+            }
+        },
+        "controller.UserLoginReq": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "description": "密码\nrequired: true\nexample: 123456",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名\nrequired: true\nexample: admin",
+                    "type": "string"
+                }
+            }
+        },
+        "controller.UserReq": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "description": "密码\nrequired: true\nexample: 123456",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名\nrequired: true\nexample: admin",
+                    "type": "string"
+                }
+            }
+        },
         "gorm.DeletedAt": {
             "type": "object",
             "properties": {
@@ -112,7 +210,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "avatar": {
-                    "description": "Avatar URL of the user",
+                    "description": "Avatar URL of the user\nexample: http://xx\nrequired: false",
                     "type": "string"
                 },
                 "createdAt": {
@@ -129,7 +227,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "nickname": {
-                    "description": "Nickname of the user\nexample: JohnDoe\nrequired: true",
+                    "description": "Nickname of the user\nexample: JohnDoe\nrequired: false",
                     "type": "string"
                 },
                 "password": {
@@ -141,6 +239,10 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updatedAt": {
+                    "type": "string"
+                },
+                "username": {
+                    "description": "Username of the user\nexample: xxxxx\nrequired: true",
                     "type": "string"
                 }
             }

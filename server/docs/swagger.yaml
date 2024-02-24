@@ -1,5 +1,55 @@
 basePath: /api
 definitions:
+  controller.BadRequestErrorResponse:
+    properties:
+      details:
+        additionalProperties: true
+        description: 具体错误详情（可选）
+        type: object
+      error:
+        description: 错误信息
+        type: string
+    type: object
+  controller.InternalServerErrorResponse:
+    properties:
+      details:
+        additionalProperties: true
+        description: 具体错误详情（可选）
+        type: object
+      error:
+        description: 错误信息
+        type: string
+    type: object
+  controller.UserLoginReq:
+    properties:
+      password:
+        description: |-
+          密码
+          required: true
+          example: 123456
+        type: string
+      username:
+        description: |-
+          用户名
+          required: true
+          example: admin
+        type: string
+    type: object
+  controller.UserReq:
+    properties:
+      password:
+        description: |-
+          密码
+          required: true
+          example: 123456
+        type: string
+      username:
+        description: |-
+          用户名
+          required: true
+          example: admin
+        type: string
+    type: object
   gorm.DeletedAt:
     properties:
       time:
@@ -11,7 +61,10 @@ definitions:
   model.User:
     properties:
       avatar:
-        description: Avatar URL of the user
+        description: |-
+          Avatar URL of the user
+          example: http://xx
+          required: false
         type: string
       createdAt:
         type: string
@@ -29,7 +82,7 @@ definitions:
         description: |-
           Nickname of the user
           example: JohnDoe
-          required: true
+          required: false
         type: string
       password:
         description: |-
@@ -44,6 +97,12 @@ definitions:
         type: string
       updatedAt:
         type: string
+      username:
+        description: |-
+          Username of the user
+          example: xxxxx
+          required: true
+        type: string
     type: object
 info:
   contact:
@@ -56,6 +115,35 @@ info:
   title: Fiber Admin App
   version: "1.0"
 paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户信息
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserLoginReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功创建用户并返回新创建的用户信息
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: 请求错误，例如缺少必填字段或格式不正确
+          schema:
+            $ref: '#/definitions/controller.BadRequestErrorResponse'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/controller.InternalServerErrorResponse'
+      summary: 登录
+      tags:
+      - 用户管理
   /user:
     get:
       produces:
@@ -74,32 +162,32 @@ paths:
           schema:
             type: string
     post:
+      consumes:
+      - application/json
+      description: 创建一个新的系统用户
       parameters:
-      - description: 账户名
+      - description: 用户信息
         in: body
-        name: username
+        name: user
         required: true
         schema:
-          type: string
-      - description: 密码
-        in: body
-        name: password
-        required: true
-        schema:
-          type: string
+          $ref: '#/definitions/controller.UserReq'
       produces:
       - application/json
       responses:
         "200":
-          description: 成功
+          description: 成功创建用户并返回新创建的用户信息
           schema:
             $ref: '#/definitions/model.User'
         "400":
-          description: 请求错误
+          description: 请求错误，例如缺少必填字段或格式不正确
           schema:
-            type: string
+            $ref: '#/definitions/controller.BadRequestErrorResponse'
         "500":
-          description: 内部错误
+          description: 服务器内部错误
           schema:
-            type: string
+            $ref: '#/definitions/controller.InternalServerErrorResponse'
+      summary: 创建用户
+      tags:
+      - 用户管理
 swagger: "2.0"

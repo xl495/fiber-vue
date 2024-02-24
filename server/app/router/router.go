@@ -10,19 +10,24 @@ import (
 func Initalize(router *fiber.App) {
 
 	// swagger
-	router.Use(swagger.New(swagger.Config{
+
+	api := router.Group("/api")
+
+	api.Use(swagger.New(swagger.Config{
 		BasePath: "/api/",
 		FilePath: "./docs/swagger.json",
 		Path:     "docs",
 	}))
 
-	router.Get("/", func(c *fiber.Ctx) error {
+	api.Get("/", func(c *fiber.Ctx) error {
 		return c.Status(200).SendString("Hello, World!")
 	})
 
-	router.Use(middleware.Json)
+	api.Use(middleware.Json)
 
-	router.Post("/api/user", controller.CreateUser)
+	api.Post("/user", controller.CreateUser)
+	api.Get("/user", controller.GetUser)
+	api.Post("/login", controller.UserLogin)
 
 	router.Use(func(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{
