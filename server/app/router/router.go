@@ -26,7 +26,7 @@ func Initalize(router *fiber.App) {
 	api.Use(middleware.Json)
 
 	api.Post("/user", controller.CreateUser)
-	api.Get("/user", controller.GetUser)
+	api.Get("/user", middleware.JwtMiddleware(), controller.GetUser)
 	api.Post("/login", controller.UserLogin)
 
 	router.Use(func(c *fiber.Ctx) error {

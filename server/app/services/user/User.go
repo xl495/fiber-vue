@@ -1,6 +1,7 @@
 package user
 
 import (
+	"errors"
 	"fiber-vue/app/database"
 	"fiber-vue/app/model"
 	"fiber-vue/app/utils"
@@ -8,24 +9,19 @@ import (
 )
 
 // GetAllUsers get all users
-func GetAllUsers() fiber.Map {
+func GetAllUsers() ([]model.User, error) {
 	var users []model.User
-	database.DB.Find(&users)
-	return fiber.Map{
-		"code": fiber.StatusOK,
-		"data": users,
-	}
+	database.DB.Omit("password").Find(&users)
+	return users, nil
 
 }
 
-func CreateUser(username string, password string) fiber.Map {
+func CreateUser(username string, password string) (fiber.Map, error) {
 
 	pws, err := utils.PasswordHash(password)
 
 	if err != nil {
-		return fiber.Map{
-			"error": err,
-		}
+		return nil, errors.New("密码加密错误")
 	}
 
 	// 查找用户名是否存在
@@ -33,10 +29,7 @@ func CreateUser(username string, password string) fiber.Map {
 	database.DB.Where("username = ?", username).First(&existingUser)
 
 	if existingUser.ID != 0 {
-		return fiber.Map{
-			"error": "用户名已存在",
-			"code":  fiber.StatusBadRequest,
-		}
+		return nil, errors.New("用户名已存在")
 	}
 
 	newUser := &model.User{
@@ -53,16 +46,10 @@ func CreateUser(username string, password string) fiber.Map {
 	responseData["nickname"] = newUser.Nickname
 
 	if dbUser.Error != nil {
-		return fiber.Map{
-			"error": dbUser.Error,
-			"code":  fiber.StatusBadRequest,
-		}
+		return nil, errors.New("创建用户失败")
 	}
 
-	return fiber.Map{
-		"data": responseData,
-		"code": fiber.StatusOK,
-	}
+	return responseData, nil
 }
 
 func FindUser() {

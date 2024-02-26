@@ -51,24 +51,17 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model.User"
                         }
-                    },
-                    "400": {
-                        "description": "请求错误，例如缺少必填字段或格式不正确",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BadRequestErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "服务器内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/controller.InternalServerErrorResponse"
-                        }
                     }
                 }
             }
         },
         "/user": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuthToken": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -122,52 +115,12 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model.User"
                         }
-                    },
-                    "400": {
-                        "description": "请求错误，例如缺少必填字段或格式不正确",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BadRequestErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "服务器内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/controller.InternalServerErrorResponse"
-                        }
                     }
                 }
             }
         }
     },
     "definitions": {
-        "controller.BadRequestErrorResponse": {
-            "type": "object",
-            "properties": {
-                "details": {
-                    "description": "具体错误详情（可选）",
-                    "type": "object",
-                    "additionalProperties": true
-                },
-                "error": {
-                    "description": "错误信息",
-                    "type": "string"
-                }
-            }
-        },
-        "controller.InternalServerErrorResponse": {
-            "type": "object",
-            "properties": {
-                "details": {
-                    "description": "具体错误详情（可选）",
-                    "type": "object",
-                    "additionalProperties": true
-                },
-                "error": {
-                    "description": "错误信息",
-                    "type": "string"
-                }
-            }
-        },
         "controller.UserLoginReq": {
             "type": "object",
             "properties": {
