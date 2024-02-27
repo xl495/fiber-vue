@@ -5,11 +5,10 @@
         </a-layout-sider>
         <a-layout>
             <a-layout-header :style="headerStyle">
+                <multiple-tab />
             </a-layout-header>
             <a-layout-content :style="contentStyle">
-            
-                <div v-for="item in 1000" :key="item" >{{  item  }}</div>
-
+                <router-view />
             </a-layout-content>
             <a-layout-footer :style="footerStyle">Footer</a-layout-footer>
         </a-layout>
@@ -20,7 +19,7 @@
 import type { CSSProperties } from 'vue';
 import Menu from './menu/index.vue'
 import { useUserStore } from '@/store/modules/user';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
+import multipleTab from './multiple-tab/tabs.vue'
 
 const userStore = useUserStore();
 
@@ -43,11 +42,7 @@ const siderStyle: CSSProperties = {
 };
 
 const contentStyle: CSSProperties = {
-    textAlign: 'center',
     minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#108ee9',
     overflow: 'auto',
 };
 

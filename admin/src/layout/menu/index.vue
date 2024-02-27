@@ -4,13 +4,13 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/modules/user';
+// import { useUserStore } from '@/store/modules/user';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue';
 import { reactive, ref, h } from 'vue';
 import { useRoute } from 'vue-router';
 // import { RouteRecordNormalized } from 'vue-router';
 
-const userStore = useUserStore();
+// const userStore = useUserStore();
 
 const route = useRoute()
 

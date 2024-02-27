@@ -6,12 +6,26 @@ const routes = [
         path: '/',
         name: 'Layout',
         component: () => import('@/layout/index.vue'),
+        children: [
+            {
+                path: 'system',
+                name: 'System',
+                children: [
+                    {
+                        path: 'menu',
+                        name: 'Menu',
+                        component: () => import('@/views/system/menu/index.vue'),
+                    },
+                ]
+            }
+        ]
     },
     {
         path: '/login',
         name: 'Login',
         component: () => import('@/views/login/index.vue'),
-    }
+    },
+
 ]
 
 const route = createRouter({

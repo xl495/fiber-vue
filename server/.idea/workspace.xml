@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efcecbde-7ceb-47d9-bc7a-6bff01e43aa8" name="更改" comment="init">
+      <change afterPath="$PROJECT_DIR$/app/controller/Menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/model/Menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/menu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/layout/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/layout/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controller/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/User.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/middleware/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/auth/Auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth/Auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/user/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user/User.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/response/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/response/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

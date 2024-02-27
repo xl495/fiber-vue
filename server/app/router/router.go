@@ -29,6 +29,16 @@ func Initalize(router *fiber.App) {
 	api.Get("/user", middleware.JwtMiddleware(), controller.GetUser)
 	api.Post("/login", controller.UserLogin)
 
+	needAuth := api.Group("/menu")
+
+	// Menu API
+	needAuth.Use(middleware.JwtMiddleware())
+
+	needAuth.Post("/", controller.CreateMenu)
+	needAuth.Put("/", controller.UpdateMenu)
+	needAuth.Delete("/", controller.RemoveMenu)
+	needAuth.Get("/", controller.GetMenu)
+
 	router.Use(func(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{
 			"code":    404,
