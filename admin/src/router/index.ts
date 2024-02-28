@@ -1,3 +1,4 @@
+import { useUserStore } from '@/store/modules/user'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -36,9 +37,14 @@ const route = createRouter({
 
 route.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token')
+    const userStore = useUserStore()
     // 获取 token 不存在直接跳转登录页
     if (to.path !== '/login' && !token) {
         return next('/login')
+    }
+
+    if (token && to.path !== '/login') {
+        userStore.fetchUser()
     }
     next()
 })

@@ -1,4 +1,4 @@
-import { login } from "@/api/user";
+import { getUsers, login } from "@/api/user";
 import { defineStore } from "pinia";
 
 const useUserStore = defineStore({
@@ -14,6 +14,7 @@ const useUserStore = defineStore({
     }),
     actions: {
         async fetchUser() {
+            const data = await getUsers()
         },
         async login({ username, password }: { username: string, password: string }) {
             const data = await login({ username, password });

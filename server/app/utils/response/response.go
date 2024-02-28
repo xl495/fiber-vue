@@ -15,6 +15,8 @@ type Response struct {
 const (
 	ERROR   = 7 // 应用特定错误码
 	SUCCESS = 0 // 应用特定成功码
+
+	UNAUTHORIZED = 401 //	未登录
 )
 
 // Result 根据提供的参数构建并发送一个标准化的API响应。
@@ -76,4 +78,11 @@ func FailWithMessage(message string, c *fiber.Ctx) error {
 // @returns error - 如果发送响应时出现问题，则返回错误
 func FailWithDetailed(data interface{}, message string, c *fiber.Ctx) error {
 	return Result(ERROR, data, message, c)
+}
+
+// FailWithUnauthorized 发送一个失败的响应，其中包含提供的数据和自定义消息。
+// @summary 发送一个失败的响应，包含数据和自定义消息
+// @returns error - 如果发送响应时出现问题，则返回错误
+func FailWithUnauthorized(data interface{}, message string, c *fiber.Ctx) error {
+	return Result(UNAUTHORIZED, data, message, c)
 }

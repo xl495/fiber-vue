@@ -26,7 +26,7 @@ func Initalize(router *fiber.App) {
 	api.Use(middleware.Json)
 
 	api.Post("/user", controller.CreateUser)
-	api.Get("/user", middleware.JwtMiddleware(), controller.GetUser)
+	api.Get("/users", middleware.JwtMiddleware(), controller.GetUser)
 	api.Post("/login", controller.UserLogin)
 
 	needAuth := api.Group("/menu")

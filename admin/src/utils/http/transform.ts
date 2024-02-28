@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios"
-
+import router from '@/router'
 import { notification } from 'ant-design-vue';
 
 const handleError = (error: string, msg: string) => {
@@ -19,6 +19,11 @@ export const handleResponse = (res: AxiosResponse<{ code: number, data: any, msg
 
     if (code === 0) {
         return data
+    } else if (code === 401) {
+        handleError('error', '登录失效，请重新登录')
+        localStorage.removeItem('token')
+        router.push('/login')
+        return Promise.reject('登录失效，请重新登录')
     } else {
         handleError('error', msg)
         return Promise.reject(msg)

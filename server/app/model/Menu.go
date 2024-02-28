@@ -1,9 +1,14 @@
 package model
 
-import "gorm.io/gorm"
+import (
+	"database/sql/driver"
+	"encoding/json"
+	"errors"
+	"gorm.io/gorm"
+)
 
 type Menu struct {
-	gorm.Model `json:"gorm.Model"`
+	gorm.Model
 	// parent_id of the Menu
 	// example: 0
 	// required: false
@@ -29,24 +34,26 @@ type Menu struct {
 	// required: false
 	Sort int `gorm:"size:255" json:"sort"`
 
-	// meta of the Menu
+	// Mate of the Menu
 	// example: {"title":"system","icon":"system"}
 	// required: false
-	Meta Meta `gorm:"size:255" json:"meta"`
+	Mate json.RawMessage `gorm:"type:longtext" json:"mate"`
+
+	Children []Menu `gorm:"-" json:"children"`
 }
 
-type Meta struct {
-	// title of the Meta
+type Mate struct {
+	// title of the Mate
 	// example: system
 	// required: true
 	Title string `gorm:"size:255" json:"title"`
 
-	// icon of the Meta
+	// icon of the Mate
 	// example: system
 	// required: false
 	Icon string `gorm:"size:255" json:"icon"`
 
-	//	keepAlive of the Meta
+	//	keepAlive of the Mate
 	//	example: false
 	//	required: false
 	KeepAlive bool `gorm:"size:255" json:"keepAlive"`
@@ -55,4 +62,17 @@ type Meta struct {
 	// example: false
 	// required: false
 	Hidden bool `gorm:"size:255" json:"hidden"`
+}
+
+func (m Mate) Value() (driver.Value, error) {
+	return json.Marshal(m)
+}
+
+func (m *Mate) Scan(value interface{}) error {
+	bytes, ok := value.([]byte)
+	if !ok {
+		return errors.New("Type assertion .([]byte) failed.")
+	}
+
+	return json.Unmarshal(bytes, &m)
 }

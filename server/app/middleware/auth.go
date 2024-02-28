@@ -15,13 +15,13 @@ func JwtMiddleware() fiber.Handler {
 		tokenString := c.Get("Authorization")
 
 		if tokenString == "" {
-			return response.FailWithDetailed(nil, "未登录", c)
+			return response.FailWithUnauthorized(nil, "未登录", c)
 		}
 
 		bearerToken := strings.Split(tokenString, " ") // Bearer token
 
 		if len(bearerToken) != 2 {
-			return response.FailWithDetailed(nil, "未登录", c)
+			return response.FailWithUnauthorized(nil, "未登录", c)
 		}
 
 		token := bearerToken[1]
@@ -32,20 +32,20 @@ func JwtMiddleware() fiber.Handler {
 
 		if parseToken != nil {
 			if parseToken.Claims == nil || parseToken.Claims.(jwt.MapClaims)["userId"] == nil {
-				return response.FailWithDetailed(nil, "未登录", c)
+				return response.FailWithUnauthorized(nil, "未登录", c)
 			}
 
 			expireAt := time.Unix(int64(parseToken.Claims.(jwt.MapClaims)["exp"].(float64)), 0)
 
 			if time.Now().Unix() > expireAt.Unix() {
-				return response.FailWithDetailed(nil, "登录失效", c)
+				return response.FailWithUnauthorized(nil, "登录失效", c)
 			}
 
 			claims := parseToken.Claims.(jwt.MapClaims)
 
 			c.Locals("user", claims)
 		} else {
-			return response.FailWithDetailed(nil, "未登录", c)
+			return response.FailWithUnauthorized(nil, "未登录", c)
 		}
 
 		return c.Next()

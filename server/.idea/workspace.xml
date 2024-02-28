@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efcecbde-7ceb-47d9-bc7a-6bff01e43aa8" name="更改" comment="init">
-      <change afterPath="$PROJECT_DIR$/app/controller/Menu.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/Menu.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/menu.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/layout/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/layout/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/api/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/store/modules/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/utils/http/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/utils/http/request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/utils/http/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/utils/http/transform.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/views/system/menu/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/views/system/menu/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/views/system/menu/operation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/views/system/menu/operation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/Menu.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/Menu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/middleware/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/Menu.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/Menu.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/menu.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/menu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/response/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/response/response.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,37 +66,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go 构建.go build bcrypt.test.go.executor&quot;: &quot;Run&quot;,
-    &quot;Go 构建.go build fiber-vue.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Project/fiber-vue/server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\JetBrains\\GoLand 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go 构建.go build bcrypt.test.go.executor": "Run",
+    "Go 构建.go build fiber-vue.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Project/fiber-vue/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "D:\\JetBrains\\GoLand 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Go 构建.go build fiber-vue">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="server" />
@@ -150,6 +157,22 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/app/services/menu.go</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/app/services/menu.go</url>
+          <line>29</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/server$go_build_fiber_vue.out" NAME="go build fiber-vue 覆盖结果" MODIFIED="1707386162950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
